@@ -129,45 +129,52 @@ document.addEventListener('keydown', function (keyDowned) {
 // });
 
 // Setup
-const recordCollection = {
-  2548: {
-    albumTitle: 'Slippery When Wet',
-    artist: 'Bon Jovi',
-    tracks: ['Let It Rock', 'You Give Love a Bad Name'],
-  },
-  2468: {
-    albumTitle: '1999',
-    artist: 'Prince',
-    tracks: ['1999', 'Little Red Corvette'],
-  },
-  1245: {
-    artist: 'Robert Palmer',
-    tracks: [],
-  },
-  5439: {
-    albumTitle: 'ABBA Gold',
-  },
-};
+//
 
-// Only change code below this line
-function updateRecords(records, id, prop, value) {
-  if (value == '') {
-    delete records[id][prop];
-  } else if (prop !== 'tracks' && value != '') {
-    records[id][prop] = value;
-  } else if (prop === 'tracks' && value !== '') {
-    if (!records[id].hasOwnProperty(prop)) {
-      records[id][prop] = [];
+let contacts = [
+  {
+    firstName: 'Akira',
+    lastName: 'Laine',
+    number: '0543236543',
+    likes: ['Pizza', 'Coding', 'Brownie Points'],
+  },
+  {
+    firstName: 'Harry',
+    lastName: 'Potter',
+    number: '0994372684',
+    likes: ['Hogwarts', 'Magic', 'Hagrid'],
+  },
+  {
+    firstName: 'Sherlock',
+    lastName: 'Holmes',
+    number: '0487345643',
+    likes: ['Intriguing Cases', 'Violin'],
+  },
+  {
+    firstName: 'Kristian',
+    lastName: 'Vos',
+    number: 'unknown',
+    likes: ['JavaScript', 'Gaming', 'Foxes'],
+  },
+];
+
+function lookUpProfile(name, prop) {
+  // Only change code below this line
+  for (let j = 0; j < contacts.length; j++) {
+    if (contacts[j].firstName === name) {
+      if (contacts[j].hasOwnProperty(prop)) {
+        console.log(contacts[j][prop]);
+        return contacts[j][prop];
+      } else {
+        console.log('No such property');
+        return 'No such property';
+      }
     }
-    records[id][prop].push(value);
+    console.log(`object ${j + 1} is checked`);
   }
-  console.log(records);
-  return records;
+  console.log('No such contact');
+  return 'No such contact';
+  // Only change code above this line
 }
 
-updateRecords(recordCollection, 5439, 'artist', 'ABBA');
-
-updateRecords(recordCollection, 5439, 'artist', 'ABBA');
-updateRecords(recordCollection, 5439, 'tracks', 'Take a Chance on Me');
-updateRecords(recordCollection, 1245, 'tracks', 'Addicted to Love');
-updateRecords(recordCollection, 2468, 'tracks', 'Free');
+lookUpProfile('Bob', 'number');
