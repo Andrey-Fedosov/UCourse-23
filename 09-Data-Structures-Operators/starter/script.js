@@ -59,6 +59,115 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+//////////////////////////////////////////////////////////////////////////////////
+////////17.07.2023/////////////////////////17/07/2023////////////////////////
+
+//// lesson 117 as a string property
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////16.05.2023/////////////////////16.05.2023//////////////////////////////
+
+// Lesson 116 sets/////////////////////////////////////////////////////////////
+
+//// create set ==>>
+const orderSet = new Set(['Pasta', 'pizza', 'pizza', 'risotto', 'Pasta']);
+
+console.log(orderSet);
+
+///// representing string as a set===>>>
+console.log(new Set('Andy'));
+
+//// get set size ===>>>
+console.log(orderSet.size);
+
+////// check set some value
+console.log(orderSet.has('risotto'));
+console.log(orderSet.has('gelatto'));
+
+///////add to the set
+orderSet.add('gelatto');
+orderSet.add('latte');
+orderSet.add('latte');
+console.log(orderSet);
+
+////// delete from the set
+orderSet.delete('latte');
+console.log(orderSet);
+
+/////// delete whole set
+
+// console.log(orderSet.clear());
+// console.log(orderSet);
+
+////// looping set
+
+for (const order of orderSet) {
+  console.log(order);
+}
+
+/////// searchin uniq values
+
+const staff = ['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef'];
+
+const staffSet = new Set(staff);
+
+////// here spread operator allows to transform set into array===>>>
+const arrayFromSet = [...staffSet];
+console.log(arrayFromSet);
+console.log(typeof arrayFromSet);
+
+console.log(staff);
+console.log(staffSet);
+
+//////////example
+console.log(
+  new Set(['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef']).size
+); // here we get that size = 4;
+
+console.log(new Set('AndyMandy').size); /// we get 6 as a unique symbols
+
+//////////////////15.05.2023/////////////////////////////////////////////////////////
+//lesson 114 - looping objects: object keys, values and entries
+
+//114.1  looping object - property names
+
+// const property = Object.keys(workHours);
+// console.log(property);
+
+// console.log(`we are open ${property.length} days`);
+
+// for (const day of Object.keys(workHours)) {
+//   console.log(day);
+// }
+//=>=>=>
+
+// for (const day of property) {
+//   console.log(day);
+// }
+
+// let openStr = `we are open ${property.length} days: `;
+// ////=>=>=>
+// for (const day of property) {
+//   openStr += `${day} `;
+// }
+// console.log(openStr);
+
+//114.2 looping objects - property values
+
+// const objValues = Object.values(workHours);
+// console.log(objValues);
+
+///114.3 property entries (entire object)
+
+const objEntries = Object.entries(workHours);
+// console.log(objEntries);
+
+for (const [day, { open: openH, close: closeH }] of objEntries) {
+  // console.log(x); //<<<== we get array which contains key and value
+  console.log(`On ${day} we open at ${openH} and close at ${closeH}`);
+}
+
 ////////optional chaining
 
 /////earlier it looked like:
@@ -75,43 +184,43 @@ const restaurant = {
 //   console.log(restaurant.workHours.sat.open);
 // }
 
-/////// optional chaining since ES2020
-console.log(restaurant.workHours.mon?.open);
-console.log(restaurant.workHours.thu?.open);
+/////// lesson 113 optional chaining since ES2020
+// console.log(restaurant.workHours.mon?.open);
+// console.log(restaurant.workHours.thu?.open);
 
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-for (const day of days) {
-  const openTime = restaurant.workHours[day]?.open ?? 'closed';
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   const openTime = restaurant.workHours[day]?.open ?? 'closed';
 
-  console.log(`On ${day} we open at ${openTime}`);
-}
+//   console.log(`On ${day} we open at ${openTime}`);
+// }
 
 ////////methods
 
-console.log(restaurant.order?.(0, 1) ?? 'method doesnt exist');
-console.log(restaurant.orderRissoto?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.order?.(0, 1) ?? 'method doesnt exist');
+// console.log(restaurant.orderRissoto?.(0, 1) ?? 'Method does not exist');
 
 ////arrays
 
-const restUsers = [
-  {
-    name: 'sergio',
-    phone: 1235,
-  },
-  {
-    name: 'Petro',
-  },
-];
+// const restUsers = [
+//   {
+//     name: 'sergio',
+//     phone: 1235,
+//   },
+//   {
+//     name: 'Petro',
+//   },
+// ];
 
-console.log(restUsers[0]?.name ?? 'array is empty');
+// console.log(restUsers[0]?.name ?? 'array is empty');
 
 // for action like in line 106 earlier we should do it that way
 
-if (restUsers.length > 0) {
-  console.log(restUsers[0].name);
-} else {
-  console.log('array is empty');
-}
+// if (restUsers.length > 0) {
+//   console.log(restUsers[0].name);
+// } else {
+//   console.log('array is empty');
+// }
 
 // console.log(3 || 'done'); // 3
 // console.log('' || 'Andy'); // 'andy'
