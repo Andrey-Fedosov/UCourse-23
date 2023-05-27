@@ -60,6 +60,66 @@ const restaurant = {
   },
 };
 
+///////////////////////////////////////////
+//27.10.2023////////////////     Maps//////
+
+// maps - data structure to unite keys with values. that key can be any type not only string
+
+const rest = new Map();
+
+/////////ad data into the map
+
+rest.set('name', 'Classico italiano');
+rest.set(1, 'Roma');
+rest.set(2, 'Milan');
+rest.set('seats', 23);
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 12)
+  .set('close', 24)
+  .set(true, 'we are open')
+  .set(false, 'we are close');
+
+console.log(rest); // shown Map(3) {"name" => "Classico italiano", "city" => "Roma", "seats" => 23}
+
+/////////// gettin data from the map
+
+const restSeats = rest.get('seats');
+
+console.log(restSeats);
+console.log(rest.get(true));
+
+const time = 21;
+const workStatus = rest.get(
+  time > rest.get('open') && time < rest.get('close') ? true : false
+);
+console.log(workStatus);
+
+//////check key - method has
+
+console.log(rest.has('seats'));
+console.log(rest.has('owner'));
+
+// deleting from the map
+
+// rest.delete('seats');
+console.log(rest);
+
+////// size of the map - method .size()
+
+console.log(rest.size);
+
+/////using arrays as a map keys
+const test = [1, 2, 3];
+// rest.set([1, 2, 3], 'major');
+rest.set(test, 'major');
+rest.set(document.querySelector('h1'), 'heading');
+console.log(rest);
+
+// console.log(rest.get([1, 2, 3])); // shown undefined
+console.log(rest.get(test));
+
 //////////////////////////////////////////////////////////////////////////////////
 ////////17.07.2023/////////////////////////17/07/2023////////////////////////
 
@@ -71,61 +131,61 @@ const restaurant = {
 // Lesson 116 sets/////////////////////////////////////////////////////////////
 
 //// create set ==>>
-const orderSet = new Set(['Pasta', 'pizza', 'pizza', 'risotto', 'Pasta']);
+// const orderSet = new Set(['Pasta', 'pizza', 'pizza', 'risotto', 'Pasta']);
 
-console.log(orderSet);
-
-///// representing string as a set===>>>
-console.log(new Set('Andy'));
-
-//// get set size ===>>>
-console.log(orderSet.size);
-
-////// check set some value
-console.log(orderSet.has('risotto'));
-console.log(orderSet.has('gelatto'));
-
-///////add to the set
-orderSet.add('gelatto');
-orderSet.add('latte');
-orderSet.add('latte');
-console.log(orderSet);
-
-////// delete from the set
-orderSet.delete('latte');
-console.log(orderSet);
-
-/////// delete whole set
-
-// console.log(orderSet.clear());
 // console.log(orderSet);
 
-////// looping set
+// ///// representing string as a set===>>>
+// console.log(new Set('Andy'));
 
-for (const order of orderSet) {
-  console.log(order);
-}
+// //// get set size ===>>>
+// console.log(orderSet.size);
 
-/////// searchin uniq values
+// ////// check set some value
+// console.log(orderSet.has('risotto'));
+// console.log(orderSet.has('gelatto'));
 
-const staff = ['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef'];
+// ///////add to the set
+// orderSet.add('gelatto');
+// orderSet.add('latte');
+// orderSet.add('latte');
+// console.log(orderSet);
 
-const staffSet = new Set(staff);
+// ////// delete from the set
+// orderSet.delete('latte');
+// console.log(orderSet);
 
-////// here spread operator allows to transform set into array===>>>
-const arrayFromSet = [...staffSet];
-console.log(arrayFromSet);
-console.log(typeof arrayFromSet);
+// /////// delete whole set
 
-console.log(staff);
-console.log(staffSet);
+// // console.log(orderSet.clear());
+// // console.log(orderSet);
 
-//////////example
-console.log(
-  new Set(['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef']).size
-); // here we get that size = 4;
+// ////// looping set
 
-console.log(new Set('AndyMandy').size); /// we get 6 as a unique symbols
+// for (const order of orderSet) {
+//   console.log(order);
+// }
+
+// /////// searchin uniq values
+
+// const staff = ['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef'];
+
+// const staffSet = new Set(staff);
+
+// ////// here spread operator allows to transform set into array===>>>
+// const arrayFromSet = [...staffSet];
+// console.log(arrayFromSet);
+// console.log(typeof arrayFromSet);
+
+// console.log(staff);
+// console.log(staffSet);
+
+// //////////example
+// console.log(
+//   new Set(['chef', 'waiter', 'barista', 'hostess', 'waiter', 'chef']).size
+// ); // here we get that size = 4;
+
+// console.log(new Set('AndyMandy').size); /// we get 6 as a unique symbols
 
 //////////////////15.05.2023/////////////////////////////////////////////////////////
 //lesson 114 - looping objects: object keys, values and entries
