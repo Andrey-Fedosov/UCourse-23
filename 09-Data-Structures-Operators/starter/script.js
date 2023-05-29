@@ -65,60 +65,108 @@ const restaurant = {
 
 // maps - data structure to unite keys with values. that key can be any type not only string
 
-const rest = new Map();
+// const rest = new Map();
 
-/////////ad data into the map
+// /////////ad data into the map
 
-rest.set('name', 'Classico italiano');
-rest.set(1, 'Roma');
-rest.set(2, 'Milan');
-rest.set('seats', 23);
+// rest.set('name', 'Classico italiano');
+// rest.set(1, 'Roma');
+// rest.set(2, 'Milan');
+// rest.set('seats', 23);
 
-rest
-  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
-  .set('open', 12)
-  .set('close', 24)
-  .set(true, 'we are open')
-  .set(false, 'we are close');
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 12)
+//   .set('close', 24)
+//   .set(true, 'we are open')
+//   .set(false, 'we are close');
 
-console.log(rest); // shown Map(3) {"name" => "Classico italiano", "city" => "Roma", "seats" => 23}
+// console.log(rest); // shown Map(3) {"name" => "Classico italiano", "city" => "Roma", "seats" => 23}
 
-/////////// gettin data from the map
+// /////////// gettin data from the map
 
-const restSeats = rest.get('seats');
+// const restSeats = rest.get('seats');
 
-console.log(restSeats);
-console.log(rest.get(true));
+// console.log(restSeats);
+// console.log(rest.get(true));
 
-const time = 21;
-const workStatus = rest.get(
-  time > rest.get('open') && time < rest.get('close') ? true : false
-);
-console.log(workStatus);
+// const time = 21;
+// const workStatus = rest.get(
+//   time > rest.get('open') && time < rest.get('close') ? true : false
+// );
+// console.log(workStatus);
 
-//////check key - method has
+// //////check key - method has
 
-console.log(rest.has('seats'));
-console.log(rest.has('owner'));
+// console.log(rest.has('seats'));
+// console.log(rest.has('owner'));
 
-// deleting from the map
+// // deleting from the map
 
-// rest.delete('seats');
-console.log(rest);
+// // rest.delete('seats');
+// console.log(rest);
 
-////// size of the map - method .size()
+// ////// size of the map - method .size()
 
-console.log(rest.size);
+// console.log(rest.size);
 
-/////using arrays as a map keys
-const test = [1, 2, 3];
-// rest.set([1, 2, 3], 'major');
-rest.set(test, 'major');
-rest.set(document.querySelector('h1'), 'heading');
-console.log(rest);
+// /////using arrays as a map keys
+// const test = [1, 2, 3];
+// // rest.set([1, 2, 3], 'major');
+// rest.set(test, 'major');
+// rest.set(document.querySelector('h1'), 'heading');
+// console.log(rest);
 
-// console.log(rest.get([1, 2, 3])); // shown undefined
-console.log(rest.get(test));
+// // console.log(rest.get([1, 2, 3])); // shown undefined
+// console.log(rest.get(test));
+
+////////////maps iteration/////////////
+///////////////////////////////////////
+
+const question = new Map([
+  ['question', 'what is the best programming language ?'],
+  [1, 'c'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'try again'],
+]);
+
+console.log(question);
+
+////convert object to map
+
+const workHoursMap = new Map(Object.entries(workHours));
+console.log(workHoursMap);
+
+//// for loop is available for map
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key} is ${value}`);
+// }
+
+// getting answer from the user
+
+const answer = Number(prompt(question.get('question')));
+
+const inToConsole = question.get(question.get('correct') === answer);
+
+console.log(inToConsole);
+
+// below my variant, above - teachers variant (lines 154-156)
+// if (answer === question.get('correct')) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// }
+
+///////convert map into array
+console.log([...question]);
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
 
 //////////////////////////////////////////////////////////////////////////////////
 ////////17.07.2023/////////////////////////17/07/2023////////////////////////
