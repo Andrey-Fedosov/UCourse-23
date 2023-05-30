@@ -59,9 +59,135 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+//////////30.05.2023///////////////////
+//// lesson 131 -work with strings⬇️//
+
+const airline = 'Belavia ';
+const airline2 = 'emirates airlines';
+const plane = 'B737';
+
+/////// getting certain letter from the string
+
+const thirdLetter = airline[2];
+console.log(thirdLetter);
+console.log(airline[0]);
+
+////////// getting index of the letter - indexOf();
+
+console.log(airline.indexOf('a'));
+console.log(airline.indexOf('e'));
+console.log(airline.lastIndexOf('a')); // for geting last index  of certain letter
+console.log(airline.indexOf('avia'));
+
+//////convert number to string
+/////// first method⬇️
+const tel = String(80291989959);
+
+/////// the second method by adding to number empty string symbol ''
+
+const tel2 = 1979254;
+const stringTel = tel2 + '';
+console.log(stringTel, typeof stringTel);
+
+console.log(`type of tel constant is ${typeof tel}`);
+
+///// 1.2 - slice method
+
+console.log(airline2, airline2.slice(0)); // slice from index 0
+console.log(airline2, airline2.slice(0, 3)); // slice from index 0 to index 3 (3 - is not includes) - shown emi
+console.log(airline2, airline2.slice(-1)); // slice from last index from the end
+console.log(airline2, airline2.slice(-2)); // slice 2 letters from the end
+
+///// getting length of the string
+
+console.log(airline.length);
+
+console.log(airline2.slice(0, airline2.indexOf(' '))); //// this allow to get firs word of the string whereve we don't know its length
+console.log(airline2.slice(airline.lastIndexOf(' ') + 2));
+/////// writing a function that check is seat in the middle
+const checkMiddleSeat = function (seat) {
+  if (seat.slice(-1) == 'B' || seat.slice(-1) == 'E') {
+    return `You've got a middle seat`;
+  } else return `You lucky 😎`;
+};
+
+console.log(checkMiddleSeat('15D'));
+console.log(checkMiddleSeat('5F'));
+console.log(checkMiddleSeat('10B'));
+
+console.log(new String('Andy'));
+console.log(typeof new String('Andy'));
+
+//////// part 2  strings
+
+///// conver into lower case or upper case
+
+const airline3 = 'KLM Airlines';
+
+const lowerCaseWord = airline3.toLowerCase(); /////convert string into lower case klm emirates
+const upperCaseWord = lowerCaseWord.toUpperCase();
+
+console.log(lowerCaseWord);
+console.log(upperCaseWord);
+
+/////fix capitalization
+const passengerName = 'roBeRT';
+const passengerLowerCase = passengerName.toLowerCase();
+const correctName =
+  passengerLowerCase[0].toUpperCase() + passengerLowerCase.slice(1);
+console.log(correctName);
+
+///////check email
+
+const userEmail = 'mailbox@andymail.io';
+const loginEmail = '   MAilbox@AndyMail.IO \n';
+const convertedLoginEmail = loginEmail.toLowerCase().trim();
+console.log(convertedLoginEmail);
+console.log(convertedLoginEmail === userEmail);
+
+///////replace part of the string -method replace()
+const priceGB = '125.54$';
+const priceBYN = priceGB.replace('.', ',').replace('$', 'BYN');
+console.log(priceBYN);
+
+const announcement =
+  'All passenger come to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replaceAll('door', 'gate')); /// replace all
+
+/// also it's possible with regex using
+
+console.log(announcement.replace(/door/g, 'gate'));
+
+///////////////// Booleans
+
+const plane1 = 'Airbus320neo';
+
+console.log(plane1.includes('320'));
+console.log(plane1.includes('Boeing'));
+console.log(plane1.startsWith('Air'));
+console.log(plane1.endsWith('neo'));
+
+if (plane1.startsWith('Airbus') && plane1.endsWith('neo')) {
+  console.log('Part of new airbus family');
+}
+
+//////exercise
+
+const luggageList = 'knife, passport, phone';
+const luggageList1 = 'glass, passport, phone';
+
+const handLuggagePermit = function (lug) {
+  if (lug.toLowerCase().includes('knife')) {
+    console.log(`you cant take it on the board`);
+  } else console.log(`you can pass`);
+};
+
+handLuggagePermit(luggageList);
+handLuggagePermit(luggageList1);
 
 ///////////////////////////////////////////
-//27.10.2023////////////////     Maps//////
+//27.05.2023////////////////     Maps//////
 
 // maps - data structure to unite keys with values. that key can be any type not only string
 
@@ -123,22 +249,22 @@ const restaurant = {
 ////////////maps iteration/////////////
 ///////////////////////////////////////
 
-const question = new Map([
-  ['question', 'what is the best programming language ?'],
-  [1, 'c'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct'],
-  [false, 'try again'],
-]);
+// const question = new Map([
+//   ['question', 'what is the best programming language ?'],
+//   [1, 'c'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct'],
+//   [false, 'try again'],
+// ]);
 
-console.log(question);
+// console.log(question);
 
-////convert object to map
+// ////convert object to map
 
-const workHoursMap = new Map(Object.entries(workHours));
-console.log(workHoursMap);
+// const workHoursMap = new Map(Object.entries(workHours));
+// console.log(workHoursMap);
 
 //// for loop is available for map
 
@@ -149,11 +275,11 @@ console.log(workHoursMap);
 
 // getting answer from the user
 
-const answer = Number(prompt(question.get('question')));
+// const answer = Number(prompt(question.get('question')));
 
-const inToConsole = question.get(question.get('correct') === answer);
+// const inToConsole = question.get(question.get('correct') === answer);
 
-console.log(inToConsole);
+// console.log(inToConsole);
 
 // below my variant, above - teachers variant (lines 154-156)
 // if (answer === question.get('correct')) {
@@ -163,10 +289,10 @@ console.log(inToConsole);
 // }
 
 ///////convert map into array
-console.log([...question]);
-console.log(question.entries());
-console.log([...question.keys()]);
-console.log([...question.values()]);
+// console.log([...question]);
+// console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
 
 //////////////////////////////////////////////////////////////////////////////////
 ////////17.07.2023/////////////////////////17/07/2023////////////////////////
@@ -268,13 +394,13 @@ console.log([...question.values()]);
 
 ///114.3 property entries (entire object)
 
-const objEntries = Object.entries(workHours);
+// const objEntries = Object.entries(workHours);
 // console.log(objEntries);
 
-for (const [day, { open: openH, close: closeH }] of objEntries) {
-  // console.log(x); //<<<== we get array which contains key and value
-  console.log(`On ${day} we open at ${openH} and close at ${closeH}`);
-}
+// for (const [day, { open: openH, close: closeH }] of objEntries) {
+//   // console.log(x); //<<<== we get array which contains key and value
+//   console.log(`On ${day} we open at ${openH} and close at ${closeH}`);
+// }
 
 ////////optional chaining
 
