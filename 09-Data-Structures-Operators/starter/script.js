@@ -186,6 +186,42 @@ const handLuggagePermit = function (lug) {
 handLuggagePermit(luggageList);
 handLuggagePermit(luggageList1);
 
+////////31.05.2023 work with strng # 3
+///////////////
+
+/////// split method divides  a string in array from strings
+
+console.log('it+is+a+summer+start'.split('+')); ///// ['it', 'is', 'a', 'summer, 'start'];
+console.log('Andy Fedosov'.split(' '));
+
+/////using split with destructurisation
+
+const [firstName, lastName] = 'Andy Fedosov'.split(' ');
+console.log(`the firstName is ${firstName}. The last name is ${lastName}`);
+
+///////join method - unites words from the array ////
+console.log(['Mr', firstName, lastName].join(' '));
+
+//////capitalise name
+/////////////////////
+
+const capitaliseName = function (name) {
+  let tempName = name.toLowerCase().split(' ');
+  let capName = [];
+  for (const item of tempName) {
+    // capName.push(item[0].toUpperCase() + item.slice(1));
+
+    ////another method of doing this
+
+    capName.push(item.replace(item[0], item[0].toUpperCase()));
+  }
+  console.log(capName.join(' '));
+};
+
+/////////padding a string
+
+// const capitaliseName01 = capitaliseName('Andrew Fedosov');
+capitaliseName('stan SmiTh');
 ///////////////////////////////////////////
 //27.05.2023////////////////     Maps//////
 
