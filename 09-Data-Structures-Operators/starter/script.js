@@ -218,7 +218,39 @@ const capitaliseName = function (name) {
   console.log(capName.join(' '));
 };
 
-/////////padding a string
+/////////padding a string -adding  to the string some symbols
+const message = 'go to gate 23';
+console.log(message.padStart(25, '+')); // number(in this case 25 show how long result string should be)
+const clientName = 'Andy';
+console.log(clientName.padStart(25, '*'));
+console.log(clientName.padEnd(25, '*'));
+
+//////Mask CreditCard number
+
+// const maskCreditCard = function (number) {
+//   console.log(String(number).slice(12).padStart(16, '*'));
+// };
+////upper my variant⬆️ lines 230-231
+//// below teachers variant
+const maskCreditCard = function (number) {
+  const str = String(number);
+  console.log(str.slice(-4).padStart(str.length, '*')); /// i think this is more effective variant
+};
+
+maskCreditCard(5686456245624478);
+
+///////repeat method
+
+const message2 = ' bad weather. all departures are delayed...';
+console.log(message2.repeat(3));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line. ${'🛩️'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(8);
+planesInLine(10);
 
 // const capitaliseName01 = capitaliseName('Andrew Fedosov');
 capitaliseName('stan SmiTh');

@@ -1,14 +1,10 @@
-'use strict';
+"use strict";
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// const flights =
+//   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
-
-
-
-
-  // Coding Challenge #1
+// Coding Challenge #1
 
 /* 
 We're building a football betting app (soccer for my American friends 😅)!
@@ -29,39 +25,39 @@ GOOD LUCK 😀
 */
 
 const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
   players: [
     [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
     ],
     [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
     ],
   ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
   odds: {
     team1: 1.33,
     x: 3.25,
@@ -164,7 +160,7 @@ console.log(oddsSum / oddValues.length);
 
 const oddObjectEntries = Object.entries(oddObject);
 for (const [team, teamOdd] of oddObjectEntries) {
-  if (team == 'x') {
+  if (team == "x") {
     console.log(`Odd of draw: ${teamOdd}`);
   } else {
     console.log(`Odd of victory ${game[team]} : ${teamOdd}`);
@@ -200,52 +196,52 @@ Let's continue with our football betting app! This time, we have a map with a lo
 GOOD LUCK 😀
 */
 
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
 
-// 1. Create an array 'events' of the different game events that happened (no duplicates)
+// // 1. Create an array 'events' of the different game events that happened (no duplicates)
 
-const events = [...new Set(gameEvents.values())]; // we get array
-const events1 = new Set([...gameEvents.values()]); // we get set
+// const events = [...new Set(gameEvents.values())]; // we get array
+// const events1 = new Set([...gameEvents.values()]); // we get set
 
-console.log(events);
-console.log(events1);
+// console.log(events);
+// console.log(events1);
 
-// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
-const deletedEvent = gameEvents.delete(64);
-// gameEvents.delete(69);
-console.log(gameEvents);
+// // 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+// const deletedEvent = gameEvents.delete(64);
+// // gameEvents.delete(69);
+// console.log(gameEvents);
 
 // 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
 
 // teacher variant
 
-const time = [...gameEvents.keys()].pop(); // to get time of last event
-console.log(time);
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
+// const time = [...gameEvents.keys()].pop(); // to get time of last event
+// console.log(time);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
 
 // . Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
 // [FIRST HALF] 17: ⚽️ GOAL
 
 //teachers variant
 
-for (const [min, eve] of gameEvents) {
-  const half = min <= 45 ? 'first' : 'second';
-  console.log(`[${half} half] ${min}: ${eve}`);
-}
+// for (const [min, eve] of gameEvents) {
+//   const half = min <= 45 ? 'first' : 'second';
+//   console.log(`[${half} half] ${min}: ${eve}`);
+// }
 // below my variant
 // for (const [time, event] of gameEvents) {
 //   if (time <= 45) {
@@ -259,23 +255,34 @@ for (const [min, eve] of gameEvents) {
 // String Methods Practice
 
 const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+// console.log(flights.split("+"));
+for (const flight of flights.split("+")) {
+  const [type, from, to, time] = flight.split(";");
+  const outputData = `${
+    type.includes("_Delayed") ? "🔴" : " "
+  }${type.replaceAll("_", " ")} from ${from.slice(0, 3).toUpperCase()} to ${to
+    .slice(0, 3)
+    .toUpperCase()} (${time.replace(":", "h")})`;
+  console.log(outputData.padStart(50, " "));
+}
 
 // 🔴 Delayed Departure from FAO to TXL (11h25)
 //              Arrival from BRU to FAO (11h45)
 //   🔴 Delayed Arrival from HEL to FAO (12h05)
 //            Departure from FAO to LIS (12h30)
 
-const getCode = str => str.slice(0, 3).toUpperCase();
+// const getCode = str => str.slice(0, 3).toUpperCase();
 
-for (const flight of flights.split('+')) {
-  const [type, from, to, time] = flight.split(';');
-  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
-    '_',
-    ' '
-  )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
-  console.log(output);
-}
+// for (const flight of flights.split('+')) {
+//   const [type, from, to, time] = flight.split(';');
+//   const output = ${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+//     '_',
+//     ' '
+//   )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+//   console.log(output);
+// }
 
 ///////////////////////////////////////
 // Coding Challenge #4
@@ -308,25 +315,47 @@ Afterwards, test with your own test data!
 
 GOOD LUCK 😀
 */
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
 
-/*
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+// const textareaText = document.querySelector("textarea").value;
+/////// below lines 312-326 my variant of coding 4 task
+// const convertName = function (text) {
+//   let tempStr = text.replaceAll("\n", ",");
+//   let tempArr = tempStr.split(",");
+//   let newArr = [];
 
-document.querySelector('button').addEventListener('click', function () {
-  const text = document.querySelector('textarea').value;
-  const rows = text.split('\n');
+//   for (const item of tempArr) {
+//     const secondWord1Char = item[item.indexOf("_") + 1];
+//     // console.log(item, secondWord1Char);
+//     newArr.push(
+//       item.toLowerCase().replace(/_./, secondWord1Char.toUpperCase()).trim()
+//     );
+//   }
+//   console.log(newArr.join("\n"));
+// };
+// document.querySelector("button").addEventListener("click", function());
 
-  for (const [i, row] of rows.entries()) {
-    const [first, second] = row.toLowerCase().trim().split('_');
+// convertName(
+//   "undeRscore_CaSe\n ClIEnT_nAMe\nSome_VariaBLe\n calculate_AGE\n DelAYED_depARTUre"
+// );
 
-    const output = `${first}${second.replace(
-      second[0],
-      second[0].toUpperCase()
-    )}`;
-    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
-  }
-});
-*/
+//////below⬇️ teachers variant
 
-/*
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
+
+// const textareaText = document.querySelector("textarea").value;
+// document.querySelector("button").addEventListener("click", function () {
+//   const textareaText = document.querySelector("textarea").value;
+//   const rows = textareaText.split("\n");
+
+//   for (const [j, item] of rows.entries()) {
+//     const [firstPart, secondPart] = item.toLowerCase().trim().split("_");
+//     const outputV = `${firstPart}${secondPart
+//       .replace(secondPart[0], secondPart[0].toUpperCase())};
+//     console.log(`${outputV.padEnd( 20, )}`);
+//   }
+//   console.log(rows);
+
+// // console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
