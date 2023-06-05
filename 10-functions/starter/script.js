@@ -78,3 +78,5 @@ newPassport(Andy); /// running of this function changes value pasport property i
 
 checkIn(flight, Andy); //// and it leads that function checkIn  works incorrect because we get new pasport nuber which is equal to right number
 console.log(Andy); //// we get {name: 'Mr.Andy Fedos', pasport: 4325891563} and every function running will give new pasport number in andy object
+
+////////////04.06.2023
