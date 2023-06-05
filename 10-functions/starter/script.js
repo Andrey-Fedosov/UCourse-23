@@ -47,37 +47,37 @@ const Andy = {
   pasport: 375291989,
 };
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = 'LH999';
-  passenger.name = 'Mr.' + passenger.name;
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'LH999';
+//   passenger.name = 'Mr.' + passenger.name;
 
-  if (passenger.pasport === 375291989) {
-    alert('Check in!');
-  } else {
-    alert('Wrong passport' + passenger.pasport);
-  }
-  console.log(flightNum);
-};
+//   if (passenger.pasport === 375291989) {
+//     alert('Check in!');
+//   } else {
+//     alert('Wrong passport' + passenger.pasport);
+//   }
+//   console.log(flightNum);
+// };
 
 // checkIn(flight, Andy);
 
-console.log(flight); /// flight stays the same like in line 44 - LH238
-console.log(Andy); /// shown {name: 'Mr.Andy Fedos', pasport: 375291989} - name property has changed - andvlooks like in function mask
+// console.log(flight); /// flight stays the same like in line 44 - LH238
+// console.log(Andy); /// shown {name: 'Mr.Andy Fedos', pasport: 375291989} - name property has changed - andvlooks like in function mask
 
-const flightNum = flight;
-const passenger = Andy;
+// const flightNum = flight;
+// const passenger = Andy;
 //manipulate with passenger object is the same as manipulate with andy object because they are the same object in the memory heap
 
 // passing the primitive type in function is the same as a copying, like in line 67
 
-const newPassport = function (person) {
-  person.pasport = Math.trunc(Math.random() * 10000000000);
-};
+// const newPassport = function (person) {
+//   person.pasport = Math.trunc(Math.random() * 10000000000);
+// };
 
-newPassport(Andy); /// running of this function changes value pasport property in the object Andy
+// newPassport(Andy); /// running of this function changes value pasport property in the object Andy
 
-checkIn(flight, Andy); //// and it leads that function checkIn  works incorrect because we get new pasport nuber which is equal to right number
-console.log(Andy); //// we get {name: 'Mr.Andy Fedos', pasport: 4325891563} and every function running will give new pasport number in andy object
+// checkIn(flight, Andy); //// and it leads that function checkIn  works incorrect because we get new pasport nuber which is equal to right number
+// console.log(Andy); //// we get {name: 'Mr.Andy Fedos', pasport: 4325891563} and every function running will give new pasport number in andy object
 
 ////////////04.06.2023- 05.06.2023
 ////////callback function
@@ -100,3 +100,32 @@ const transformString = function (str, fn) {
 
 transformString('all we need is love', oneWord);
 transformString('all we need is love', upperFirstWord);
+
+const high5 = function () {
+  console.log(`Hello 👋`);
+};
+
+document.body.addEventListener('click', high5); // in this case high5  is a callback fuction which lounched when we click o  a page
+
+['andy', 'mandy', 'semen', 'anton'].forEach(high5);
+
+////////////lesson 125s
+/////// funtion returns function
+
+const greetMe = function (greeting) {
+  return function (name) {
+    console.log(`${greeting}, ${name}`);
+  };
+};
+
+greetMe('hi')('pete'); /// one of the variant of writng the function that returns another function
+
+const greetHolla = greetMe('holla');
+
+greetHolla('Raul'); ///lines 123-124 also one way to wright function that return  another function
+
+const greetArrow = greet => firstName => {
+  console.log(`${greet}, ${firstName}`);
+};
+
+greetArrow('pryvet')('dude');
