@@ -79,4 +79,24 @@ newPassport(Andy); /// running of this function changes value pasport property i
 checkIn(flight, Andy); //// and it leads that function checkIn  works incorrect because we get new pasport nuber which is equal to right number
 console.log(Andy); //// we get {name: 'Mr.Andy Fedos', pasport: 4325891563} and every function running will give new pasport number in andy object
 
-////////////04.06.2023
+////////////04.06.2023- 05.06.2023
+////////callback function
+
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
+};
+// console.log(oneWord('Planet Earth'));
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  // console.log(first, others);
+  return [first.toUpperCase(), ...others].join(' ');
+};
+console.log(upperFirstWord('Planet Earth is our home'));
+
+const transformString = function (str, fn) {
+  console.log(fn(str));
+};
+
+transformString('all we need is love', oneWord);
+transformString('all we need is love', upperFirstWord);
