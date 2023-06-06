@@ -129,3 +129,75 @@ const greetArrow = greet => firstName => {
 };
 
 greetArrow('pryvet')('dude');
+
+////lesson 134  - call an d apply methods
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+
+  ///below⬇️ will be a function
+
+  book(flightNum, passengerName) {
+    console.log(
+      `${passengerName} booked on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+
+    this.bookings.push({
+      flight: `${this.iataCode}${flightNum}`,
+      passengerName,
+    });
+  },
+};
+
+lufthansa.book(856, 'andy fedosov');
+lufthansa.book(253, 'Mandy pedos');
+
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+////to add to this object bookfunction we shouldn't copy it from previous object. because when we copy it we take of it from initial object.
+// i mean it's bad idea to lounch the book function out of its object.
+// to solve this problem - we should use three keywords: call, apply, bind
+
+/////using call keyword
+book.call(eurowings, 23, 'Sarrah Smith');
+
+console.log(eurowings);
+
+/// it looks like we call function book (that in its functionality is the same as lufthansa.book function ) for eurowings object and besides we use 23 as a flightNum , and a sarrah Smith as a passengerName
+
+book.call(lufthansa, 149, 'Shimon Zlateck');
+console.log(lufthansa);
+
+const belavia = {
+  airline: 'Belavia',
+  iataCode: 'B2',
+  bookings: [],
+};
+
+book.call(belavia, 301, 'Andy Fedos');
+console.log(belavia);
+
+//// apply method
+
+const flightData = [444, 'Pete Shmit'];
+
+book.apply(belavia, flightData);
+
+console.log(belavia);
+
+//// nowadays the better practise is to use call method and spread operator line 202
+
+const flightData2 = [258, 'Helen krochek'];
+
+book.call(eurowings, ...flightData2);
+console.log(eurowings);
