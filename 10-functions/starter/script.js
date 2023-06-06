@@ -101,13 +101,13 @@ const transformString = function (str, fn) {
 transformString('all we need is love', oneWord);
 transformString('all we need is love', upperFirstWord);
 
-const high5 = function () {
-  console.log(`Hello 👋`);
-};
+// const high5 = function () {
+//   console.log(`Hello 👋`);
+// };
 
-document.body.addEventListener('click', high5); // in this case high5  is a callback fuction which lounched when we click o  a page
+// document.body.addEventListener('click', high5); // in this case high5  is a callback fuction which lounched when we click o  a page
 
-['andy', 'mandy', 'semen', 'anton'].forEach(high5);
+// ['andy', 'mandy', 'semen', 'anton'].forEach(high5);
 
 ////////////lesson 125s
 /////// funtion returns function
@@ -201,3 +201,57 @@ const flightData2 = [258, 'Helen krochek'];
 
 book.call(eurowings, ...flightData2);
 console.log(eurowings);
+
+///////////06.06.23
+///////// bind method
+
+// for the start
+// book.call(eurowings, 456 'John Smith');
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookB2 = book.bind(belavia);
+bookEW(23, 'John Smith'); //
+
+const bookEW23 = book.bind(eurowings, 23);
+
+bookEW23('Misha Fedos');
+bookEW23('AndyFedos');
+
+//////using bind Method with event listener
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  this.planes++;
+  console.log(this.planes);
+};
+
+// const buyPlaneLH = buyPlane.bind(lufthansa);
+// lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//////partial application
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.25, 200));
+
+const addVAT = addTax.bind(null, 0.2); // it is equal to
+// addVAT = value + value * 0.2
+
+console.log(addVAT(300));
+
+const addTax2 = function (value) {
+  return function (rate) {
+    console.log(value * (1 + rate));
+  };
+};
+
+const addTo2K = addTax2(2000);
+addTo2K(0.3);
+
+const addTax3 = value => rate => console.log(value * (1 + rate));
+
+addTax3(100)(0.5);
