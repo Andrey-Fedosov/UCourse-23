@@ -1,5 +1,9 @@
 'use strict';
 
+///////// imedeately invoked functions expressios (IIFE)
+
+/// to run function only once
+
 /*
 ///////////////////////////////////////
 // Default Parameters
@@ -407,4 +411,3 @@ GOOD LUCK 😀
   });
 })();
 */
-
