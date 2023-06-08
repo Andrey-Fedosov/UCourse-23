@@ -1,4 +1,51 @@
 'use strict';
+////////// 08.06.2006
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+
+  f = function () {
+    console.log(b / 7);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+/// re-assign f
+h();
+f();
+console.dir(f);
+// console.dir(f);
+//////////closure
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`there are ${passengerCount} passengers`);
+  };
+};
+
+const addPassenger = secureBooking();
+
+addPassenger();
+addPassenger();
+addPassenger();
+
+console.dir(addPassenger);
+
 /////// immideately invoked function expression (IIFE)
 /// to run function only onse we can use IIFE
 
