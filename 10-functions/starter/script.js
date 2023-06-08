@@ -1,4 +1,25 @@
 'use strict';
+/////// immideately invoked function expression (IIFE)
+/// to run function only onse we can use IIFE
+
+(function () {
+  console.log('function has runned');
+  const isPrivat = 23;
+})();
+
+// console.log(isPrivat); // error is not defined
+
+/// arrow variant
+(() => console.log('this function runs once too'))();
+
+{
+  const isPrivat = 23;
+  var notPrivat = 42;
+}
+
+// console.log(isPrivat);
+console.log(notPrivat);
+
 //////// 01.06.2023
 /////// chapter 10 - functions
 
