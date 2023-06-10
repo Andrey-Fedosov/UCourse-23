@@ -149,3 +149,22 @@ document
 
 poll.displayResults.call({ results: [5, 2, 3] });
 poll.displayResults.call({ results: [1, 5, 3, 9, 6, 1] }, 'string');
+
+////////challenge 2
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'orange';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'green';
+  });
+})();
+console.dir(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'orange';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'green';
+  });
+});
