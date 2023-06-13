@@ -139,6 +139,7 @@ const currencies = new Map([
 currencies.forEach(function (value, key, map) {
   console.log(`here is key ${key}, value is ${value}`);
 });
+// ? 13.06.2023  -  add Dom manipulation
 
 //forEach for Sets
 const currenciesSet = new Set(['USD', 'EUR', 'GBP', 'GBP', 'GBP', 'EUR']);
@@ -167,8 +168,8 @@ currenciesSet.forEach(function (value, _, set) {
 // console.log(arr.at(-2)); // we get 48
 // console.log(arr.at(-3)); // we get 17
 // console.log(arr.at(-6)); // we get undefined
-// // i.e. it counts from the end
-// // it also works with string
+// i.e. it counts from the end
+// it also works with string
 
 // const nameStr = 'Andy';
 // console.log(nameStr.at(0)); // A
