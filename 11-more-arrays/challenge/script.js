@@ -17,3 +17,40 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
+// const julieArr = [3, 5, 2, 12, 7];
+// const kateArr = [4, 1, 15, 8, 3];
+const julieArr = [9, 16, 6, 8, 3];
+const kateArr = [10, 5, 6, 1, 4];
+
+// & 1. Julia found out that the owners of the FIRST and the LAST TWO dogs actually have cats, not dogs! So create a shallow copy of Julia's array, and remove the cat ages from that copied array (because it's a bad practice to mutate function parameters)
+
+// const julieArrCopy = julieArr.slice();
+// ? it also possible to do this way⬇️ - using spread operator
+const julieArrCopy = [...julieArr];
+
+julieArrCopy.splice(0, 1);
+julieArrCopy.splice(-2);
+console.log(julieArr);
+console.log(julieArrCopy);
+
+// & 2. Create an array with both Julia's (corrected) and Kate's data
+
+// const mutualArr = julieArrCopy.concat(kateArr);
+// ? it also possible to do this way⬇️ - using spread operator
+const mutualArr = [...julieArrCopy, ...kateArr];
+
+console.log(mutualArr);
+
+// & 3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 🐶")
+
+const checkDogs = function (arr) {
+  arr.forEach(function (el, i) {
+    const dogAge =
+      el < 3
+        ? `Dog number ${i + 1} is still a puppy 🐶`
+        : `Dog number ${i + 1} is an adult, and is ${el} years old`;
+    console.log(dogAge);
+  });
+};
+
+checkDogs(mutualArr);
