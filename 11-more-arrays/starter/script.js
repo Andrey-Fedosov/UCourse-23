@@ -157,12 +157,12 @@ currenciesSet.forEach(function (value, _, set) {
 // console.log(arr.at(0)); // 23
 // console.log(arr.at(2)); // 48
 
-// ////// getting the last element
+//?  getting the last element
 // console.log(arr[arr.length - 1]); // we get 36
 // console.log(arr.slice(-1)); // we get [36]
 // console.log(arr.slice(-1)[0]); // in this case we get 36
 
-// //getting the last element using at-method
+//? getting the last element using at-method
 // console.log(`-----geting the last element using at-method-----`);
 // console.log(arr.at(-1)); // we get 36
 // console.log(arr.at(-2)); // we get 48
