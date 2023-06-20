@@ -61,6 +61,29 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  //textContent = 0; something similar
+
+  movements.forEach(function (mov, i) {
+    //^ for reseting  initial values in page html code we should use .innerHTML
+    const transactionType = mov > 0 ? 'deposit' : 'withdrawal';
+    console.log(transactionType);
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${transactionType}">${
+      i + 1
+    } ${transactionType}</div>
+          <div class="movements__value">${Math.abs(mov)}€</div>
+        </div>
+      `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
