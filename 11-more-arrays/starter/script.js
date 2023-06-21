@@ -137,20 +137,45 @@ const shorterMovDescr = movements.map(
 // console.log(movDescr);
 // console.log(shorterMovDescr);
 
+// const user = 'Steven Thomas Williams';
+// const getProfileName = function (client) {
+//   const userToArray = client.toLowerCase().split(' ');
+//   const profileNameLetters = userToArray.map(el => el.slice(0, 1));
+//   return profileNameLetters.join('');
+// };
+
+// getProfileName(user);
+
+// const getAllProfiles = accounts.map(function (el) {
+//   return getProfileName(el.owner);
+// });
+
+// console.log(getAllProfiles);
+
+//?  below teachers variant
+
 const user = 'Steven Thomas Williams';
-const getProfileName = function (client) {
-  const userToArray = client.toLowerCase().split(' ');
-  const profileNameLetters = userToArray.map(el => el.slice(0, 1));
-  return profileNameLetters.join('');
+
+// const userName = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(el => el[0])
+//   .join('');
+
+const getUserName = function (user) {
+  const userName = user
+    .toLowerCase()
+    .split(' ')
+    .map(el => el[0])
+    .join('');
+  return userName;
 };
 
-getProfileName(user);
-
-const getAllProfiles = accounts.map(function (el) {
-  return getProfileName(el.owner);
+accounts.forEach(function (acc) {
+  acc.userName = getUserName(acc.owner);
 });
 
-console.log(getAllProfiles);
+console.log(accounts);
 
 // console.log(profileNameLetters);
 // const userToArray = user.toLowerCase().split(' ');
