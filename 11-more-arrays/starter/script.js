@@ -68,7 +68,7 @@ const displayMovements = function (movements) {
   movements.forEach(function (mov, i) {
     //^ for reseting  initial values in page html code we should use .innerHTML
     const transactionType = mov > 0 ? 'deposit' : 'withdrawal';
-    console.log(transactionType);
+    // console.log(transactionType);
     const html = `
         <div class="movements__row">
           <div class="movements__type movements__type--${transactionType}">${
@@ -88,6 +88,74 @@ displayMovements(account1.movements);
 /////////////////////////////////////////////////
 // LECTURES
 
+//* 20.06.2023 map, filter, reduce methods
+//* MAP Method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const euroToUsd = 1.5;
+
+//here we use callback function to get required values. this is the modern  way.
+// const convertedMovements = movements.map(function (mov) {
+//   return mov * euroToUsd;
+// });
+
+// doing the same through the arrow function
+
+const movementsToUSD = movements.map(mov => mov * euroToUsd);
+
+// console.log(convertedMovements);
+// console.log(movementsToUSD);
+
+//^  here we go through the initial array
+// const newArr = [];
+// for (const mov of movements) {
+//   newArr.push(mov * 2);
+// }
+// console.log(`newArr is ${newArr}`);
+
+//^ add to callback function index argument and array arg
+// const movementDescription = movements.map((mov, i, arr) => {
+//   if (mov > 0) {
+//     return `Movement ${i + 1}: you deposited ${mov}`;
+//   } else {
+//     return `Movement ${i + 1}: you withdrew ${Math.abs(mov)}`;
+//   }
+// });
+//^ using ternary operator
+const movDescr = movements.map((mov, i, arr) => {
+  return mov > 0
+    ? `Movement ${i + 1}: you deposited ${mov}`
+    : `Movement ${i + 1}: you withdrew ${Math.abs(mov)}`;
+});
+//^ even shorter
+const shorterMovDescr = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: you ${mov > 0 ? `deposited ${mov}` : `withdrew ${mov}`}`
+);
+// console.log(movementDescription);
+// console.log(movDescr);
+// console.log(shorterMovDescr);
+
+const user = 'Steven Thomas Williams';
+const getProfileName = function (client) {
+  const userToArray = client.toLowerCase().split(' ');
+  const profileNameLetters = userToArray.map(el => el.slice(0, 1));
+  return profileNameLetters.join('');
+};
+
+getProfileName(user);
+
+const getAllProfiles = accounts.map(function (el) {
+  return getProfileName(el.owner);
+});
+
+console.log(getAllProfiles);
+
+// console.log(profileNameLetters);
+// const userToArray = user.toLowerCase().split(' ');
+// console.log(userToArray);
+
 // const currencies = new Map([
 //   ['USD', 'United States dollar'],
 //   ['EUR', 'Euro'],
@@ -102,7 +170,7 @@ displayMovements(account1.movements);
 //? ----- 11.06.2023
 //? ----- FOREACH METHOD -----
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 //? to go through the array for-of method
 
