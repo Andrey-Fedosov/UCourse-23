@@ -84,16 +84,125 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+// const calcAndPrintBalance = function (movements) {
+//   labelBalance.innerHTML = '';
+
+//   const calcBalance = movements.reduce((acc, mov) => acc + mov, 0);
+
+//   const balanceHtml = `
+//     <p class="balance__value">${calcBalance}€</p>
+//   `;
+
+//   labelBalance.insertAdjacentHTML('afterbegin', balanceHtml);
+// };
+
+// calcAndPrintBalance(account1.movements);
+
+//^ below⬇️ teachers variant
+
+const calcPrintBalance = function (movements) {
+  const balance2 = movements.reduce((acc, mov) => acc + mov, 0);
+
+  labelBalance.textContent = `${balance2} EURO`;
+};
+
+calcPrintBalance(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//* 22.06.2023
+//* 155 - chaining method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euroToUsd = 1.1;
+
+const totalDepositsUsd = movements
+  .filter(mov => mov > 0)
+  .map(
+    mov => mov * euroToUsd
+    // console.log(mov);
+  )
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUsd);
+
+//* 21.06.2023
+// //* reduce method
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// accumulator -> SNOWBALL
+// const summEl = movements.reduce(function (acc, el, i, arr) {
+// console.log(`Iteration ${i + 1} - summ: ${acc} `);
+//   return acc + el;
+// }, 0);
+
+// transformed into arrow loop below
+
+// const balance = movements.reduce((acc, el) => acc + el, 0);
+// console.log(`The balance is ${balance}`);
+
+// // do thesame with for-of loop
+// let summ = 0;
+
+// for (const tr of movements) {
+//   summ += tr;
+// }
+
+// console.log(`the Summ = ${summ}`);
+
+// console.log(summEl);
+
+//? get maximum
+// my decision
+// const getMaxOfArr = movements.reduce(function (acc, mov) {
+//   if (acc < mov) {
+//     acc = mov;
+//   }
+//   return acc;
+// }, 0);
+
+//teacher variant
+
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
+
+// console.log(`Max value is ${max}`);
+
+// console.log(getMaxOfArr);
+
+//* filter method
+//* ////////////////////////
+
+// const moreThan1K = movements.filter(function (mov) {
+//   return mov > 1000;
+// });
+
+// const deposits = movements.filter(mov => mov > 0);
+// const withdrawals = movements.filter(mov => mov < 0);
+
+// console.log(moreThan1K);
+// console.log(deposits);
+// console.log(withdrawals);
+
+// we can consider filter method as something like
+
+// const deposits2 = [];
+
+// for (const t of movements) {
+//   if (t < 100) {
+//     deposits2.push(t);
+//   }
+// }
+
+// console.log(deposits2);
 
 //* 20.06.2023 map, filter, reduce methods
 //* MAP Method
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const euroToUsd = 1.5;
+// const euroToUsd = 1.5;
 
 //here we use callback function to get required values. this is the modern  way.
 // const convertedMovements = movements.map(function (mov) {
@@ -102,7 +211,7 @@ const euroToUsd = 1.5;
 
 // doing the same through the arrow function
 
-const movementsToUSD = movements.map(mov => mov * euroToUsd);
+// const movementsToUSD = movements.map(mov => mov * euroToUsd);
 
 // console.log(convertedMovements);
 // console.log(movementsToUSD);
@@ -123,16 +232,16 @@ const movementsToUSD = movements.map(mov => mov * euroToUsd);
 //   }
 // });
 //^ using ternary operator
-const movDescr = movements.map((mov, i, arr) => {
-  return mov > 0
-    ? `Movement ${i + 1}: you deposited ${mov}`
-    : `Movement ${i + 1}: you withdrew ${Math.abs(mov)}`;
-});
+// const movDescr = movements.map((mov, i, arr) => {
+//   return mov > 0
+//     ? `Movement ${i + 1}: you deposited ${mov}`
+//     : `Movement ${i + 1}: you withdrew ${Math.abs(mov)}`;
+// });
 //^ even shorter
-const shorterMovDescr = movements.map(
-  (mov, i, arr) =>
-    `Movement ${i + 1}: you ${mov > 0 ? `deposited ${mov}` : `withdrew ${mov}`}`
-);
+// const shorterMovDescr = movements.map(
+//   (mov, i, arr) =>
+//     `Movement ${i + 1}: you ${mov > 0 ? `deposited ${mov}` : `withdrew ${mov}`}`
+// );
 // console.log(movementDescription);
 // console.log(movDescr);
 // console.log(shorterMovDescr);
@@ -246,23 +355,23 @@ console.log(accounts);
 
 //? FOREACH  METHOD IN MAPS AND SETS
 // forEach with maps
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function (value, key, map) {
-  console.log(`here is key ${key}, value is ${value}`);
-});
+// currencies.forEach(function (value, key, map) {
+//   console.log(`here is key ${key}, value is ${value}`);
+// });
 // ? 13.06.2023  -  add Dom manipulation
 
 //forEach for Sets
-const currenciesSet = new Set(['USD', 'EUR', 'GBP', 'GBP', 'GBP', 'EUR']);
-console.log(currenciesSet);
-currenciesSet.forEach(function (value, _, set) {
-  console.log(`${value}: ${value}`);
-});
+// const currenciesSet = new Set(['USD', 'EUR', 'GBP', 'GBP', 'GBP', 'EUR']);
+// console.log(currenciesSet);
+// currenciesSet.forEach(function (value, _, set) {
+//   console.log(`${value}: ${value}`);
+// });
 
 //? at method in arrays
 // const arr = [23, 17, 48, 36];
