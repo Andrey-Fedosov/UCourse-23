@@ -107,6 +107,37 @@ const calcPrintBalance = function (movements) {
 };
 
 calcPrintBalance(account1.movements);
+
+//*25.06.2023
+const displaySummIn = function (movements) {
+  const depositsSumm = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${depositsSumm}€`;
+};
+const displaySummOut = function (movements) {
+  const withdrawalSumm = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(withdrawalSumm)}€`;
+};
+
+const displayInterest = function (movements) {
+  const interestR = movements
+    .filter(mov => mov > 0)
+    .map(dep => (dep * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${interestR}€`;
+};
+
+displaySummIn(account1.movements);
+displaySummOut(account1.movements);
+displayInterest(account1.movements);
+console.log(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -114,11 +145,18 @@ calcPrintBalance(account1.movements);
 //* 155 - chaining method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euroToUsd = 1.1;
-
+// Pipeline
 const totalDepositsUsd = movements
   .filter(mov => mov > 0)
+  // .map(
+  //   mov => mov * euroToUsd
+
+  // )
   .map(
-    mov => mov * euroToUsd
+    (mov, i, arr) => {
+      // console.log(arr);
+      return mov * euroToUsd;
+    }
     // console.log(mov);
   )
   .reduce((acc, mov) => acc + mov, 0);
