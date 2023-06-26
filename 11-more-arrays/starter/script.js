@@ -141,9 +141,20 @@ console.log(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+//* 25.06.2023
+//* 156 - find method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const findNegative = movements.find(mov => mov <= 0);
+console.log(findNegative);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
 //* 22.06.2023
 //* 155 - chaining method
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euroToUsd = 1.1;
 // Pipeline
 const totalDepositsUsd = movements
