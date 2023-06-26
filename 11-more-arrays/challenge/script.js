@@ -70,33 +70,59 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
-const julieArr1 = [3, 5, 2, 12, 7];
+// const julieArr1 = [3, 5, 2, 12, 7];
 
-const calcAverageHumanAge = function (arr) {
-  //1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
-  const humanYears = arr.map(function (age) {
-    if (age <= 2) {
-      return age * 2;
-    } else return age * 4 + 16;
-  });
+// const calcAverageHumanAge = function (arr) {
+//   //1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+//   const humanYears = arr.map(function (age) {
+//     if (age <= 2) {
+//       return age * 2;
+//     } else return age * 4 + 16;
+//   });
 
-  // 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+// 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
 
-  const moreThan18 = humanYears.filter(function (years) {
-    return years >= 18;
-  });
-  console.log(humanYears);
-  console.log(moreThan18);
+//   const moreThan18 = humanYears.filter(function (years) {
+//     return years >= 18;
+//   });
+//   console.log(humanYears);
+//   console.log(moreThan18);
 
-  // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+//   // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
 
-  const calcAverage =
-    moreThan18.reduce((acc, el, i, arr) => acc + el / arr.length, 0) /
-    arr.length;
+//   const calcAverage =
+//     moreThan18.reduce((acc, el, i, arr) => acc + el / arr.length, 0) /
+//     arr.length;
 
-  return calcAverage;
+//   return calcAverage;
+// };
+
+// console.log(calcAverageHumanAge(julieArr1));
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// Coding Challenge #3
+
+/* 
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+const 
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
+const calcAverageHumanAgeRewrited = function (ages) {
+  const averageAgeDog = ages
+    .map((age) => (age <= 2 ? age * 2 : age * 4 + 16))
+    .filter((year, i, arr) => {
+      return year > 18;
+    })
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+  return averageAgeDog;
 };
 
-console.log(calcAverageHumanAge(julieArr1));
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+console.log(calcAverageHumanAgeRewrited([16, 6, 10, 5, 6, 1, 4]));
+console.log(calcAverageHumanAgeRewrited([5, 2, 4, 1, 15, 8, 3]));
