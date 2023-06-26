@@ -82,7 +82,7 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 // const calcAndPrintBalance = function (movements) {
 //   labelBalance.innerHTML = '';
@@ -109,35 +109,81 @@ const calcPrintBalance = function (movements) {
 calcPrintBalance(account1.movements);
 
 //*25.06.2023
-const displaySummIn = function (movements) {
-  const depositsSumm = movements
+const displaySumm = function (acc) {
+  const depositsSumm = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${depositsSumm}€`;
-};
-const displaySummOut = function (movements) {
-  const withdrawalSumm = movements
+
+  const withdrawalSumm = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(withdrawalSumm)}€`;
-};
 
-const displayInterest = function (movements) {
-  const interestR = movements
+  const interestR = acc.movements
     .filter(mov => mov > 0)
-    .map(dep => (dep * 1.2) / 100)
+    .map(dep => (dep * acc.interestRate) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interestR}€`;
 };
 
-displaySummIn(account1.movements);
-displaySummOut(account1.movements);
-displayInterest(account1.movements);
-console.log(account1.movements);
+//^ get userName
+const getUserName = function (user) {
+  const userName = user
+    .toLowerCase()
+    .split(' ')
+    .map(el => el[0])
+    .join('');
+  return userName;
+};
+
+accounts.forEach(function (acc) {
+  acc.userName = getUserName(acc.owner);
+});
+
+// console.log(accounts);
+
+// displaySumm(account1.movements);
+
+// console.log(account1.movements);
+
+//* 26.06.23
+//* implement login lesson
+
+//event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.userName === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //display message and UI
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+    //display Balance
+    calcPrintBalance(currentAccount.movements);
+
+    //display movements
+    displayMovements(currentAccount.movements);
+
+    displaySumm(currentAccount);
+  }
+});
+
+// const
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -149,8 +195,8 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const findNegative = movements.find(mov => mov <= 0);
 console.log(findNegative);
 
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-console.log(account);
+// const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
 
 //* 22.06.2023
 //* 155 - chaining method
@@ -319,21 +365,6 @@ const user = 'Steven Thomas Williams';
 //   .split(' ')
 //   .map(el => el[0])
 //   .join('');
-
-const getUserName = function (user) {
-  const userName = user
-    .toLowerCase()
-    .split(' ')
-    .map(el => el[0])
-    .join('');
-  return userName;
-};
-
-accounts.forEach(function (acc) {
-  acc.userName = getUserName(acc.owner);
-});
-
-console.log(accounts);
 
 // console.log(profileNameLetters);
 // const userToArray = user.toLowerCase().split(' ');
