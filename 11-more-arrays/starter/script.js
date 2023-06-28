@@ -231,19 +231,80 @@ btnTransfer.addEventListener('click', function (e) {
     inputTransferAmount.value = inputTransferTo.value = '';
     inputTransferAmount.blur();
   }
+});
+let accToDelete;
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
 
-  // console.log(transferTo);
-  // const transferSum =
+  accToDelete = inputCloseUsername.value;
+  if (
+    accToDelete === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+    // console.log(index);
+
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+    console.log(accounts);
+  }
+  inputClosePin.value = inputCloseUsername.value = '';
+});
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  // console.log(amount);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov > amount * 0.1)) {
+    currentAccount.movements.push(amount);
+
+    displayData(currentAccount);
+  }
 });
 
 // const
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//*28.06.2023 - .some() method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+console.log(movements.some(el => el > 1000));
+
+console.log(movements.includes(-130)); // shown true -because there is an element 130 in the array
+
+const anyDeposits = movements.some(mov => mov > 0);
+
+console.log(anyDeposits);
+
+const movements2 = [430, 1000, 700, 50, 90];
+
+console.log(movements2.some(mov => mov < 0));
+
+const depositCB = mov => mov > 0;
+
+console.log(movements.every(depositCB));
+
+console.log(movements.every(depositCB));
+console.log(movements.filter(depositCB));
+console.log(movements.some(depositCB));
+
+// separate callback function writing
+
+//*28.06.2023 - .findIndex() method
+// const indOf450 = movements.findIndex(el => el === 450);
+// console.log(indOf450);
+// const indOf3000 = movements.findIndex(el => el === 3000);
+// console.log(indOf3000);
+// const indOfS3000 = movements.findIndex(el => el == 3000);
+// console.log(indOfS3000);
 
 //* 25.06.2023
 //* 156 - find method
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const findNegative = movements.find(mov => mov <= 0);
 console.log(findNegative);
