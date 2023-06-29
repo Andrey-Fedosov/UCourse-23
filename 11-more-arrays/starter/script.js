@@ -270,6 +270,43 @@ btnLoan.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//* flat  and flatMap
+const arr = [430, [1000, 700], 50, 90, [5000, 3400, -150]];
+console.log(arr.flat());
+
+//go deeper
+const arr2 = [430, [1000, 700], [50, 90, [5000, 3400, -150]]];
+console.log(arr2.flat()); // [430, 1000, 700, 50, 90, Array(3)]
+
+//get deeper layer
+console.log(arr2.flat(2)); // [430, 1000, 700, 50, 90, 5000, 3400, -150]
+
+//to get total sum
+
+const accMoves = accounts.map(acc => acc.movements);
+console.log(accMoves);
+
+const intoOneArr = accMoves.flat();
+console.log(intoOneArr);
+
+const getTotal = intoOneArr.reduce((acc, el) => acc + el, 0);
+
+console.log(getTotal);
+
+// or we can do it this way:
+const tot2 = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, el) => acc + el, 0);
+console.log(tot2);
+
+//flatMap - it joins it itself flat and map Methods, but it works correct only with one layer-deep array
+
+const tot3 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, el) => acc + el, 0);
+console.log(tot3);
+
 //*28.06.2023 - .some() method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
