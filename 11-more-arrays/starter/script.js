@@ -61,11 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
   //textContent = 0; something similar
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     //^ for reseting  initial values in page html code we should use .innerHTML
     const transactionType = mov > 0 ? 'deposit' : 'withdrawal';
     // console.log(transactionType);
@@ -266,61 +267,113 @@ btnLoan.addEventListener('click', function (e) {
   }
 });
 
+// const sortArray = function (e) {
+//   e.preventDefault(e);
+//   displayData(currentAccount.movements, true);
+// };
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+  console.log(sorted);
+});
 // const
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//* 30.06.2023 sort method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// 2 ways of sort method if we sort String
+
+const clientArr = ['Andy', 'Johny', 'Pete', 'Steve', 'Hanna'];
+
+//! it is important to remember that sort method mutate initial array
+const copiedClientArr = clientArr.slice(0);
+console.log(`i copy clientArr and get: ${copiedClientArr}`);
+
+const copiedClientArr2 = [...clientArr];
+console.log(`i copy clientArr and get: ${copiedClientArr}`);
+
+console.log(clientArr.sort()); // ['Andy', 'Hanna', 'Johny', 'Pete', 'Steve']
+
+console.log(clientArr);
+
+// but if we sort number array - we get
+
+console.log(movements.sort()); // [-130, -400, -650, 1300, 200, 3000, 450, 70]
+
+// for correct work we should write it this way
+
+//return < 0: A, B
+//return > 0: B, A
+
+movements.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (b > a) {
+    return -1;
+  }
+});
+
+// for ascending order
+console.log(movements.sort((a, b) => a - b)); // [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+// for descending order
+console.log(movements.sort((a, b) => b - a)); // [3000, 1300, 450, 200, 70, -130, -400, -650]
+
 //* flat  and flatMap
-const arr = [430, [1000, 700], 50, 90, [5000, 3400, -150]];
-console.log(arr.flat());
+// const arr = [430, [1000, 700], 50, 90, [5000, 3400, -150]];
+// console.log(arr.flat());
 
 //go deeper
-const arr2 = [430, [1000, 700], [50, 90, [5000, 3400, -150]]];
-console.log(arr2.flat()); // [430, 1000, 700, 50, 90, Array(3)]
+// const arr2 = [430, [1000, 700], [50, 90, [5000, 3400, -150]]];
+// console.log(arr2.flat()); // [430, 1000, 700, 50, 90, Array(3)]
 
 //get deeper layer
-console.log(arr2.flat(2)); // [430, 1000, 700, 50, 90, 5000, 3400, -150]
+// console.log(arr2.flat(2)); // [430, 1000, 700, 50, 90, 5000, 3400, -150]
 
 //to get total sum
 
-const accMoves = accounts.map(acc => acc.movements);
-console.log(accMoves);
+// const accMoves = accounts.map(acc => acc.movements);
+// console.log(accMoves);
 
-const intoOneArr = accMoves.flat();
-console.log(intoOneArr);
+// const intoOneArr = accMoves.flat();
+// console.log(intoOneArr);
 
-const getTotal = intoOneArr.reduce((acc, el) => acc + el, 0);
+// const getTotal = intoOneArr.reduce((acc, el) => acc + el, 0);
 
-console.log(getTotal);
+// console.log(getTotal);
 
 // or we can do it this way:
-const tot2 = accounts
-  .map(acc => acc.movements)
-  .flat()
-  .reduce((acc, el) => acc + el, 0);
-console.log(tot2);
+// const tot2 = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, el) => acc + el, 0);
+// console.log(tot2);
 
 //flatMap - it joins it itself flat and map Methods, but it works correct only with one layer-deep array
 
-const tot3 = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((acc, el) => acc + el, 0);
-console.log(tot3);
+// const tot3 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, el) => acc + el, 0);
+// console.log(tot3);
 
 //*28.06.2023 - .some() method
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-console.log(movements.some(el => el > 1000));
+// console.log(movements.some(el => el > 1000));
 
-console.log(movements.includes(-130)); // shown true -because there is an element 130 in the array
+// console.log(movements.includes(-130)); // shown true -because there is an element 130 in the array
 
-const anyDeposits = movements.some(mov => mov > 0);
+// const anyDeposits = movements.some(mov => mov > 0);
 
-console.log(anyDeposits);
+// console.log(anyDeposits);
 
-const movements2 = [430, 1000, 700, 50, 90];
+// const movements2 = [430, 1000, 700, 50, 90];
 
-console.log(movements2.some(mov => mov < 0));
+// console.log(movements2.some(mov => mov < 0));
 
 const depositCB = mov => mov > 0;
 
