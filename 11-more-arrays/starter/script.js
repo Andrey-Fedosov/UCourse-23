@@ -281,8 +281,67 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//* 03.07.2023 creating array with fill method and other ways
+
+//1 method to array creating
+console.log([1, 2, 3, 4, 5, 6, 7, 8]);
+//or via constructor new Array
+console.log(new Array(1, 2, 3, 4, 5, 6, 7, 8));
+
+// if  we  need generate array pragrammatically
+
+const generatedArr = new Array(7);
+
+console.log(generatedArr); // [empty × 7] - generated  7 elements emty array
+
+// with empty arr  we can use only fill method
+console.log(generatedArr.fill(5)); // we  get  such array[5, 5, 5, 5, 5, 5, 5]
+
+console.log(generatedArr.fill(3, 2)); // it mutates initial generatedArr [5, 5, 3, 3, 3, 3, 3]: from position 2  array is filled with 3.
+
+console.log(generatedArr.fill(4, 4, 6)); // [5, 5, 3, 3, 4, 4, 3]
+
+const newArray2 = new Array(8);
+console.log(newArray2);
+
+newArray2.fill(2, 3, 5);
+console.log(newArray2); // [empty × 3, 2, 2, empty × 3] - last(5) index not included
+
+// array.from method
+
+const genArray = Array.from({ length: 9 }, () => 2);
+console.log(genArray); // we get [2, 2, 2, 2, 2, 2, 2, 2, 2]
 //* 30.06.2023 sort method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// create array from 1 to 9
+
+const genArr1To7 = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(genArr1To7); // we get [1, 2, 3, 4, 5, 6, 7]
+
+// to get 100 element arr with random elements
+// const randomArr = Array.from({ length: 100 }, () =>
+//   Math.trunc(Math.random() * 101);
+// );
+// console.log(randomArr);
+
+// create array from arrayLike structures (iterable like result of querySelectorAll - nodesList(), sets, maps);
+
+labelBalance.addEventListener('click', function () {
+  const movArr = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  //
+  // console.log(movArr.map(el => el.textContent.replace('€', '')));
+
+  console.log(movArr);
+});
+
+const movArr2 = [...document.querySelectorAll('.movements__value')];
+
+const turn = movArr2.map(el => Number(el.textContent.replace('€', '')));
+console.log(turn);
 
 // 2 ways of sort method if we sort String
 
