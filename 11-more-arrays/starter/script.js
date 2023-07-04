@@ -281,6 +281,81 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+// array methods practice lesson 1
+
+const bankDepositsSum = accounts.map(acc => acc.movements);
+
+console.log(bankDepositsSum);
+
+const bankDepositsSumMovements = bankDepositsSum.flat().filter(mov => mov > 0);
+
+console.log(bankDepositsSumMovements);
+
+const bankDepositsSumMovementsTotal = bankDepositsSumMovements.reduce(
+  (acc, el) => acc + el,
+  0
+);
+
+// way 2 to do it in one function
+const bankDepositsSum2 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(bankDepositsSumMovementsTotal); // 25180
+console.log(`---------------`);
+console.log(bankDepositsSum2); // 25180
+
+//* deposits more than 1000
+
+const depositsMore1K = accounts
+  .flatMap(el => el.movements)
+  .filter(mov => mov >= 1000).length;
+
+//  do it through reduce method
+const depositsMore1K2 = accounts
+  .flatMap(el => el.movements)
+  .filter(mov => mov >= 1000)
+  .reduce((_, __, i, array) => array.length, 0);
+const depositsMore1K3 = accounts
+  .flatMap(el => el.movements)
+  .reduce((count, curr) => (curr >= 1000 ? count + 1 : count, 0));
+
+console.log(depositsMore1K); // 6
+console.log('----------------');
+console.log(depositsMore1K2); // 6
+console.log(depositsMore1K3); // 6
+
+console.log(depositsMore1K);
+
+//3 sum separately deposit and withdrawals
+
+const sums = accounts
+  .flatMap(el => el.movements)
+  .reduce(
+    (sums, curr) => {
+      curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(sums);
+
+// rewrite  via object destructure
+
+const { deposits, withdrawals } = accounts
+  .flatMap(el => el.movements)
+  .reduce(
+    (sums, curr) => {
+      curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
 //* 03.07.2023 creating array with fill method and other ways
 
 //1 method to array creating
