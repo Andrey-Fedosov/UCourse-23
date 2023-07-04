@@ -356,6 +356,56 @@ const { deposits, withdrawals } = accounts
 
 console.log(deposits, withdrawals);
 
+// also one way to rewrite via bracket notation
+
+const { depos, withdraws } = accounts
+  .flatMap(el => el.movements)
+  .reduce(
+    (sums, curr) => {
+      sums[curr > 0 ? 'depos' : 'withdraws'] += curr;
+      return sums;
+    },
+    { depos: 0, withdraws: 0 }
+  );
+
+console.log(depos, withdraws);
+
+//4. Capitalize title case
+
+// below my attempt
+
+// const capTitle = function (str) {
+//   const strArr = str.split(' ');
+//   strArr.filter(el => {
+//     // console.log(el[0]);
+//     // console.log(el[0].toUpperCase());
+//     el.length > 1 ? el.replace(el[0], el[0].toUpperCase()) : el;
+//   });
+//   return strArr.join('');
+// };
+
+// console.log(capTitle('there is a castle in the wood'));
+
+// teachers variant
+
+const convertTitleCase = function (title) {
+  const capitalize = function (str) {
+    return str[0].toUpperCase() + str.slice(1);
+  };
+  const exeptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'with', 'in'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exeptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title, but not too Long'));
+console.log(convertTitleCase('and here is another title with an ExaMPLE'));
+
 //* 03.07.2023 creating array with fill method and other ways
 
 //1 method to array creating
