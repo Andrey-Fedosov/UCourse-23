@@ -144,35 +144,44 @@ const dogs = [
 
 const calcFoodPortion = function (dogArr) {
   dogArr.forEach((dog) => {
-    dog.food = dog.weight ** 0.75 * 28;
+    dog.food = Math.trunc(dog.weight ** 0.75 * 28);
   });
   return dogArr;
 };
 console.log(calcFoodPortion(dogs));
+
+//*07.07.2023 challenge
+
 // 2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
-const isNormalPortion = function (foodPortion, recommend) {
-  if (foodPortion > recommend * 1.1) {
-    console.log('dog eats too much');
-  } else if (foodPortion < recommend * 0.9) {
-    console.log('dog eats too little');
-  } else {
-    console.log('dog eats normal');
-  }
-};
+// teacher's variant
 
-isNormalPortion(150, 200);
-isNormalPortion(200, 180);
-isNormalPortion(200, 200);
+const dogSarah = dogs.find((dog) => dog.owners.includes('Sarah'));
 
-const checkFood = function (dogArr, ownerName) {
-  dogArr.forEach((dog) =>
-    dog.owners.includes(ownerName)
-      ? isNormalPortion(dog.food, dog.curFood)
-      : dog
-  );
-};
+console.log(dogSarah);
 
-checkFood(dogs, 'Sarrah');
+// const isNormalPortion = function (foodPortion, recommend) {
+//   if (foodPortion > recommend * 1.1) {
+//     console.log('dog eats too much');
+//   } else if (foodPortion < recommend * 0.9) {
+//     console.log('dog eats too little');
+//   } else {
+//     console.log('dog eats normal');
+//   }
+// };
+
+// isNormalPortion(150, 200);
+// isNormalPortion(200, 180);
+// isNormalPortion(200, 200);
+
+// const checkFood = function (dogArr, ownerName) {
+//   dogArr.forEach((dog) =>
+//     dog.owners.includes(ownerName)
+//       ? isNormalPortion(dog.food, dog.curFood)
+//       : dog
+//   );
+// };
+
+// checkFood(dogs, 'Sarrah');
 
 // 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
 // 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
