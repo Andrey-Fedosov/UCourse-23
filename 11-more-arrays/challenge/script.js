@@ -159,15 +159,20 @@ const dogSarah = dogs.find((dog) => dog.owners.includes('Sarah'));
 
 console.log(dogSarah);
 
-// const isNormalPortion = function (foodPortion, recommend) {
-//   if (foodPortion > recommend * 1.1) {
-//     console.log('dog eats too much');
-//   } else if (foodPortion < recommend * 0.9) {
-//     console.log('dog eats too little');
-//   } else {
-//     console.log('dog eats normal');
-//   }
-// };
+const isNormalPortion = function (owner) {
+  if (owner.curFood > owner.food * 1.1) {
+    console.log('dog eats too much');
+  } else if (owner.curFood < owner.food * 0.9) {
+    console.log('dog eats too little');
+  } else {
+    console.log('dog eats normal');
+  }
+};
+
+isNormalPortion(dogSarah);
+console.log(
+  `Sarah's dog eats too ${dogSarah.curFood > dogSarah.food ? `much` : `little`}`
+);
 
 // isNormalPortion(150, 200);
 // isNormalPortion(200, 180);
@@ -184,11 +189,45 @@ console.log(dogSarah);
 // checkFood(dogs, 'Sarrah');
 
 // 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
-// 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
-// 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.food)
+  .map((dog) => dog.owners)
+  .flat();
+
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.food)
+  .flatMap((dog) => dog.owners);
+
+console.log(ownersEatTooMuch);
+console.log(ownersEatTooLittle);
+
+//* 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+//* 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+
+console.log(dogs.some((dog) => dog.curFood === dog.food));
+
 // 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
-// 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+const isNormal = (dog) =>
+  dog.curFood > dog.food * 0.8 && dog.curFood < dog.food * 1.1;
+
+console.log(dogs.some(isNormal));
+
+//
+
+console.log(dogs.filter(isNormal));
+console.log(dogs.filter(isNormal).flatMap((dog) => dog.owners));
+
 // 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+
+const dogsCopy = dogs.slice().sort((a, b) => a.food - b.food);
+
+console.log(dogsCopy);
 
 // HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
 // HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
