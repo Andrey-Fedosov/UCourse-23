@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -294,3 +294,70 @@ console.log(Number.isInteger(355 / 0)); // false
 console.log(Number.isInteger(5 * 0)); // true
 
 //Math and roundings methods
+//getting number square root
+
+console.log(Math.sqrt(25)); // 5
+
+//it also works as
+console.log(25 ** (1 / 2)); // 5
+
+// cubic root we can get this way
+console.log(216 ** (1 / 3));
+
+//getting max value
+
+console.log(Math.max(5, 3, 18, 6, 10, 23)); // 23
+//but
+console.log(Math.max([5, 3, 18, 6, 10, 23])); //NaN
+//note.type coercion works here
+console.log(Math.max(5, 3, 18, 6, 10, '23')); // 23
+console.log(typeof Math.max(5, 3, 18, 6, 10, '23')); // but type is number
+
+//math. min
+console.log(Math.min(5, 3, 18, 6, 10, '23')); // 3
+
+//math constants
+// Math.PI
+console.log(Math.PI * Number.parseFloat('20px') ** 2); //1256.6370614359173
+
+// Math.random() - to get random number between 0 - 1
+
+console.log(Math.trunc(Math.random() * 6) + 1); // to get random number between 1 - 6
+
+// function to get random number
+
+const randInt = (max, min) => Math.trunc(Math.random() * (max - min) + 1) + min;
+
+console.log(randInt(25, 6));
+console.log(randInt(17, 6));
+console.log(randInt(29, 15));
+
+//rounding
+
+//r1 Math.trunc - remove all decimal part
+
+console.log(Math.trunc(23.3)); // 23
+console.log(Math.trunc(23.9)); // 23
+console.log('------');
+//r2c-round to closest integer
+console.log(Math.round(23.3)); // 23
+console.log(Math.round(23.9)); // 24
+console.log('------');
+//round up to bigger integer
+console.log(Math.ceil(23.3)); // 24
+console.log(Math.ceil(23.9)); // 24
+console.log('------');
+
+console.log(Math.floor(23.3)); // 23
+console.log(Math.floor(23.9)); // 23
+console.log(Math.floor('23.9')); // 23
+
+console.log(Math.floor(-23.9)); // -24
+console.log(Math.trunc(-23.9)); // -23
+
+//round decimals - toFixed (we get string)
+
+console.log((2.7).toFixed(0)); // 3 string
+console.log((2.7).toFixed(3)); // 2.700 string
+console.log((2.345).toFixed(2)); // 2.35 string
+console.log(+(2.345).toFixed(2)); // 2.35 string
