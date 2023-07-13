@@ -251,30 +251,88 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-//*09.07.2023 - Numbers, Data, Tamers
+//*13.07.23 - reminder (остаток от деления) lection
+console.log(5 % 2); // 1
+console.log(5 / 2);
+
+console.log(8 % 3);
+console.log(8 / 3);
+
+const isEven = n =>
+  n % 2 === 0
+    ? console.log(`number ${n} is even`)
+    : console.log(`number ${n} is odd`);
+
+isEven(16);
+isEven(23);
+isEven(55);
+isEven(58);
+
+// coloring every second movements
+
+labelBalance.addEventListener('click', function () {
+  return [...document.querySelectorAll('.movements__row')].forEach(function (
+    row,
+    i
+  ) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) row.style.backgroundColor = 'lightgreen';
+  });
+});
+
+//*173 numeric separators
+// for wor with big numberz we can use numeric separator - underscore
+
+console.log(267460000000); // in console we get 267460000000
+console.log(267_460_000_000); // in console we get 267460000000, but this approach is better to read
+
+// it is importan to remember that underscore sign we cannot use in beginig
+
+const priceInCents = 345_99;
+console.log(priceInCents);
+
+const transFee1 = 15_00; // 1500
+const transFee2 = 1_500; // 1500
+
+console.log(transFee1, transFee2); // in both cases we get  1500
+
+//^ math constants
+
+const PI = 3.14_15; // we get 3.1415
+console.log(PI);
+
+// const PITest =[3.1415_};
+// const PITest =[3.1415__}; // we cant use underscore in the end of number
+// const PITest =[3._1415};// we cant use underscore in the end of number
+// const PITest =[3.14__15}; // we cant use  double underscore
+
+console.log(Number('230000')); // we get 23000
+console.log(Number('230_000')); // we get NaN
+
+//*09.07.2023 - Numbers, Data, Timers
 //*170 - converting and Checking numbers
 
 //All numbers are represented as float point numbers
-console.log(23 === 23.0); // true
+// console.log(23 === 23.0); // true
 
 //base 10  system 0 - 9;
 //binary - 0, 1;
 
-console.log(0.1 + 0.2); // 0.30000000000000004
-console.log(0.1 + 0.2 === 0.3); // false - because⬆️
+// console.log(0.1 + 0.2); // 0.30000000000000004
+// console.log(0.1 + 0.2 === 0.3); // false - because⬆️
 
 //adn this is the reason why Js is not good enough for precision operations like a bank, science an so on
 
 //conver strin to numbers
-console.log(Number('23')); //23
-console.log(+'23'); //23 it is type coercion
+// console.log(Number('23')); //23
+// console.log(+'23'); //23 it is type coercion
 
 //parsing - parseInt method
-console.log(Number.parseInt('25px')); // 25
-console.log(Number.parseInt('e29px')); //NaN
+// console.log(Number.parseInt('25px')); // 25
+// console.log(Number.parseInt('e29px')); //NaN
 
-console.log(Number.parseInt('2.5rem')); // we get 2
-console.log(Number.parseFloat('2.5rem')); // we get 2.5
+// console.log(Number.parseInt('2.5rem')); // we get 2
+// console.log(Number.parseFloat('2.5rem')); // we get 2.5
 
 //check if operand is not a number  - isNaN. it looks this way
 console.log(Number.isNaN(2.0)); //false
