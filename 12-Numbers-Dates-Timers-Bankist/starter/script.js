@@ -251,6 +251,58 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+//*09.07.2023 - Numbers, Data, Timers
+//*175 creating dates
+
+//*174  work with bigInt
+// to represent numbers we use 53 bits
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+// if we need bigger number we should use bigInt primitive type
+
+console.log(154684286126461478524845245n);
+console.log(typeof 154684286126461478524845245n);
+console.log(BigInt(154684286126461478524845245n));
+
+//operations with BigInt
+// we can use with bigInt all math operations, but we can not mix BigInt numbers and integers numbers
+
+console.log(3455656543n + 256762n); //3455913305n
+console.log(1586544n * 1000n); //1586544000n
+// console.log(165465498000n + 1); // error: Cannot mix BigInt and other types, use explicit conversions
+
+// for work with integers and BigInt we should convert integer to BigInt
+
+const huge = 15641549845498n;
+const num = 15362;
+
+console.log(huge + BigInt(num));
+
+//Math methods dont work with bigINt
+
+// console.log(Math.sqrt(16n)); // error Cannot convert a BigInt value to a number
+
+// divisions looks this way
+
+console.log(10n / 3n); // 3n
+console.log(11n / 3n); // 3n
+console.log(10 / 3); // 3.33333
+
+//but comparison is work
+
+console.log(20n > 15);
+console.log(20n < 25);
+console.log(20n === 20); // false
+console.log(20n == 20); // true because type coercion
+
+//also concatenation is work
+console.log(20n + ' is very big number');
+
 //*13.07.23 - reminder (остаток от деления) lection
 console.log(5 % 2); // 1
 console.log(5 / 2);
@@ -309,7 +361,6 @@ console.log(PI);
 console.log(Number('230000')); // we get 23000
 console.log(Number('230_000')); // we get NaN
 
-//*09.07.2023 - Numbers, Data, Timers
 //*170 - converting and Checking numbers
 
 //All numbers are represented as float point numbers
